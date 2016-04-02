@@ -1,35 +1,26 @@
 package edu.ita.softserve.dao.impl.jpa;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import edu.ita.softserve.dao.impl.UserDao;
 import edu.ita.softserve.entity.Book;
 import edu.ita.softserve.entity.User;
 
-
-
 @Repository
-@Component
 public class JpaUserDao extends JpaGenericDao<User, Long> implements UserDao {
 	
-	@PersistenceContext//(unitName = "persistenceUnit")
-	EntityManager entityManager;
+	@PersistenceContext(unitName = "persistenceUnit")
+	EntityManager entityManage;
 	
 	
+	@SuppressWarnings("unchecked")
 	public List<User> getAllDeptors() {
 		List<User> users = null;
 		Query query = entityManager.createNamedQuery("showAllDeptors", User.class);

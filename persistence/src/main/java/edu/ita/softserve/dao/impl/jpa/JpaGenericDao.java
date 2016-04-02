@@ -22,7 +22,7 @@ public abstract class JpaGenericDao<T,V> implements GenericDao<T, V> {
 	
 	private Class<T> entityType;
 	 
-	@PersistenceContext(unitName = "persistenceUnit")
+	@PersistenceContext
 	protected EntityManager entityManager = JPAUtil.getEntityManager(); 
 	
 	@SuppressWarnings("unchecked")

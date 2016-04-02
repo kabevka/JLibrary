@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import edu.ita.softserve.service.UserService;
+
 /**
  * Handles requests for the application home page.
  */
@@ -30,8 +32,9 @@ public class HomeController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
 		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
+		//UserService service = new UserService();
+		double age = 1; //service.getAvarageAgeByBookName("Chorne Sonce");
+		model.addAttribute("serverTime", age );
 		
 		return "home";
 	}

@@ -18,7 +18,7 @@ import edu.ita.softserve.entity.User;
 public class UserService {
 	
 	@Autowired
-	JpaUserDao jpauserDao = new JpaUserDao();
+	JpaUserDao jpauserDao ;
 	
 	@Transactional
 	public void update(final User curentUser, final User updatedUser) {
