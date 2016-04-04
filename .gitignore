@@ -12,3 +12,7 @@ buildNumber.properties
 .classpath
 .project
 .settings/org.eclipse.jdt.core.prefs
+common/.settings/org.eclipse.jdt.core.prefs
+common/.classpath
+common/.project
+common/target/classes/META-INF/MANIFEST.MF 
