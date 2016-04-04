@@ -13,16 +13,12 @@ import org.springframework.stereotype.Repository;
 import edu.ita.softserve.dao.GenericDao;
 import edu.ita.softserve.dao.JPAUtil;
 
-
-import edu.ita.softserve.dao.GenericDao;
-
-
 @Repository
 public abstract class JpaGenericDao<T,V> implements GenericDao<T, V> {
 	
 	private Class<T> entityType;
 	 
-	@PersistenceContext
+	@PersistenceContext//(unitName = "persistenceUnit")
 	protected EntityManager entityManager = JPAUtil.getEntityManager(); 
 	
 	@SuppressWarnings("unchecked")

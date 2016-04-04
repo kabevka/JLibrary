@@ -16,30 +16,26 @@ import edu.ita.softserve.entity.User;
 @Repository
 public class JpaUserDao extends JpaGenericDao<User, Long> implements UserDao {
 	
-	@PersistenceContext(unitName = "persistenceUnit")
-	EntityManager entityManage;
-	
-	
 	@SuppressWarnings("unchecked")
 	public List<User> getAllDeptors() {
 		List<User> users = null;
-		Query query = entityManager.createNamedQuery("showAllDeptors", User.class);
+		Query query = getEntityManager().createNamedQuery("showAllDeptors", User.class);
 		users = (List<User>) query.getResultList();
 		return users;
 	}
 
 	public long timeOfLibraryUsing(User user) {
-		Query query = entityManager.createNamedQuery("showRegistrationTime");
+		Query query = getEntityManager().createNamedQuery("showRegistrationTime");
 		query.setParameter("uId", user.getId());
 		Date dateRegistration = (Date) query.getResultList().get(0);
-		query = entityManager.createNativeQuery("select curdate()");
+		query = getEntityManager().createNativeQuery("select curdate()");
 		Date curentDate = (Date) query.getResultList().get(0);
 		long timeOfUsing = Math.abs(curentDate.getTime() - dateRegistration.getTime()) / (24 * 60 * 60 * 1000);
 		return timeOfUsing;
 	}
 
 	public double getAvarageAgeUserByBookName(String bookName) {
-		Query query = entityManager.createNamedQuery("getAvarageAgeByBookName");
+		Query query = getEntityManager().createNamedQuery("getAvarageAgeByBookName");
 		query.setParameter("bookName", bookName);
 		double avagareAge = (Double) query.getResultList().get(0);
 		return avagareAge;
@@ -51,7 +47,7 @@ public class JpaUserDao extends JpaGenericDao<User, Long> implements UserDao {
 	}
 
 	public long countOfApplicationByTime(Date start, Date end, User user) {
-		Query query = entityManager.createNamedQuery("showCountOfApplicatioByTime");
+		Query query = getEntityManager().createNamedQuery("showCountOfApplicatioByTime");
 		query.setParameter("start", start);
 		query.setParameter("end", end);
 		query.setParameter("id", user.getId());

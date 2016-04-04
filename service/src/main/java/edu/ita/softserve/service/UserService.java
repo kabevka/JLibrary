@@ -3,22 +3,20 @@ package edu.ita.softserve.service;
 import java.sql.Date;
 import java.util.List;
 
-import javax.persistence.PersistenceUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.ita.softserve.dao.factory.DaoFactory;
+import edu.ita.softserve.dao.impl.UserDao;
 import edu.ita.softserve.dao.impl.jpa.JpaUserDao;
 import edu.ita.softserve.entity.User;
 
-
 @Service
 public class UserService {
-	
+
 	@Autowired
-	JpaUserDao jpauserDao ;
+	UserDao userDao ;
 	
 	@Transactional
 	public void update(final User curentUser, final User updatedUser) {
@@ -37,11 +35,11 @@ public class UserService {
 		if ((curentUser.getAdress() != null)) {
 			updatedUser.setAdress(curentUser.getAdress());
 		}
-		jpauserDao.update(updatedUser);
+		userDao.update(updatedUser);
 	}
 	@Transactional
 	public void delete(User user) {
-		jpauserDao.delete(user);
+		userDao.delete(user);
 	}
 	@Transactional
 	public void add(User user) {
@@ -49,23 +47,23 @@ public class UserService {
 	}
 
 	public User findById(long id) {
-		return jpauserDao.findById(id);
+		return userDao.findById(id);
 	}
 
 	public List<User> getAll() {
-		return jpauserDao.getAll();
+		return userDao.getAll();
 	}
 
 	public double getAvarageAgeByBookName(String bookName) {	
-		return jpauserDao.getAvarageAgeUserByBookName(bookName);
+		return userDao.getAvarageAgeUserByBookName(bookName);
 	}
 
 	public List<User> getAllDeptors() {
-		return jpauserDao.getAllDeptors();
+		return userDao.getAllDeptors();
 	}
 
 	public long timeOfLibraryUsing(User user) {
-		return jpauserDao.timeOfLibraryUsing(user);
+		return userDao.timeOfLibraryUsing(user);
 	}
 	
 	public long countOfApplicationByTime(Date start, Date end, User user) {
@@ -73,6 +71,6 @@ public class UserService {
 		start.setMonth(start.getMonth()-1);
 		start.setYear(end.getYear()-1900);
 		start.setMonth(end.getMonth()-1);
-		return jpauserDao.countOfApplicationByTime(start, end, user);
+		return userDao.countOfApplicationByTime(start, end, user);
 	}
 }
