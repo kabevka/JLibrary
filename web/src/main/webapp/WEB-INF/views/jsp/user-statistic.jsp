@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>Admin</title>
         <link rel="stylesheet" href="admin.css"/>
-        <link rel="stylesheet" href="user.css"/>
+        <link rel="stylesheet" href="resources/css/user.css"/>
     </head>
     <body>
  
