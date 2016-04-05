@@ -1,14 +1,36 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<!DOCTYPE html>
 <html>
 <head>
-	<title>Home</title>
+<meta charset="utf-8">
+<title>Search</title>
+<link rel="stylesheet" href="resources/css/admin.css" />
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
+	<div class="heder">
+		<img src="resources/img/logo.jpg" alt="logo" class="logo-img">
+	</div>
+	<nav>
+		<ul>
+			<li><a href="#">Catalog</a></li>
+			<li><a href="user">Readers</a></li>
+			<li><a href="#">Deptors</a></li>
+			<li><a href="#">Statistics</a>
+				<ul>
+					<li><a href="#">Books</a></li>
+					<li><a href="#">Reader</a></li>
+				</ul></li>
+			<li><a href="#">Log out</a></li>
+		</ul>
+	</nav>
 
-<P>  The time on the server is d ${dh}. </P>
+	<div id="search-block">
+		<input type="text" class="input-in-heder22"> <select name="Search" class="input-in-heder2">
+			
+			<option value="Title">Name</option>
+			<option value="Author" selected>Authors</option>			
+			<option value="Year">Year</option>
+			<option value="Publisher" selected>Publisher</option>
+		</select> <a href="#"><img src="resources/img/search button.jpg" alt="search.jpg" class="input-in-heder3"></a>		
+	</div>
 </body>
 </html>

@@ -21,19 +21,19 @@ public class Adress implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "city")
 	private String city;
-	
+
 	@Column(name = "street")
 	private String street;
-	
+
 	@Column(name = "number_of_house")
 	private String numberOfHouse;
-	
+
 	@Column(name = "number_of_flat")
 	private Integer numberOfFlat;
-	
+
 	public Adress() {
 		// TODO Auto-generated constructor stub
 	}
@@ -84,6 +84,10 @@ public class Adress implements Serializable {
 	public void setNumberOfFlat(Integer numberOfFlat) {
 		this.numberOfFlat = numberOfFlat;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "city=" + city + ", street=" + street + ", numberOfHouse=" + numberOfHouse + ", numberOfFlat="
+				+ numberOfFlat + "";
+	}
 }

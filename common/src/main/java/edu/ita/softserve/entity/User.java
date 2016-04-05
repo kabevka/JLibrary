@@ -172,6 +172,5 @@ public class User implements Serializable {
 				+ ", telephoneNumber=" + telephoneNumber + ", dateOfRegistration=" + dateOfRegistration + ", instance="
 				+ instance + ", dateOfGiven=" + dateOfGiven + ", dateOfGivenBack=" + dateOfGivenBack + ", adress="
 				+ adress + "]";
-	}	
-	
+	}		
 }

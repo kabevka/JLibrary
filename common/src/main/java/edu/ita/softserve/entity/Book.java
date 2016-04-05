@@ -30,30 +30,30 @@ public class Book implements Serializable{
     @Column(name="id")
     private Long id;
     
-    @Column(name="name", nullable=false)
+    @Column(name="name", nullable=true)
     private String name;
     
     @Column(name="description", nullable=true)
     private String description;
     
-    @ManyToMany(fetch = FetchType.LAZY, targetEntity=Author.class)
+    /*@ManyToMany(fetch = FetchType.LAZY, targetEntity=Author.class)
     private List<Author> authors;
+    */
     
     
-    
-    @Column(name="amount_of_page", nullable=false)
+    @Column(name="amount_of_page", nullable=true)
     private int amountOfPage;
     
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
-    @JoinColumn(name = "publication_id", nullable = false)
-    private Publication publication;
+    /*@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "publication_id", nullable = true)
+    private Publication publication;*/
     
     
     @OneToMany(fetch = FetchType.LAZY, targetEntity=Instance.class)
     private List<Instance> instances;
     
     
-    @Column(name="year", nullable=false)
+    @Column(name="year", nullable=true)
     private Integer year;
     
     public Long getId() {
@@ -96,7 +96,7 @@ public class Book implements Serializable{
         this.description = description;
     }
 
-    public List<Author> getAuthors() {
+   /* public List<Author> getAuthors() {
         return authors;
     }
 
@@ -111,7 +111,7 @@ public class Book implements Serializable{
 
     public void setPublication(Publication publication) {
         this.publication = publication;
-    }
+    }*/
     
     
 

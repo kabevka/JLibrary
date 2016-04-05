@@ -5,8 +5,8 @@
     <head>
         <meta charset="utf-8">
         <title>Admin</title>
-        <link rel="stylesheet" href="admin.css"/>
-        <link rel="stylesheet" href="user.css"/>
+        <link rel="stylesheet" href="resources/css/admin.css"/>
+        <link rel="stylesheet" href="resorces/css/user.css"/>
     </head>
     <body>
  
@@ -32,8 +32,18 @@
     
     <div>
         <table border="2">
-            <tr><th>№</th><th>Ім'я</th><th>Прізвище</th><th>Вік</th><th>Номер телефону</th><th>Дата реєстрації</th></tr>
-            <tr><td></td>   <td></td>   <td></td>   <td></td>   <td></td>   <td></td></tr>
+            <tr><th>id</th><th>First Name�</th><th>Second Name</th><th>Age</th><th>Telephone number</th><th>Date of registration�</th><th>Adress</th></tr>
+            <tr>
+            	<c:forEach items = "${users}" var="users">
+            		<td><c:out value="${users.id}"/></td>
+             		<td><c:out value="${users.firstName}"/></td>  
+             		<td><c:out value ="${users.secondName}"/></td> 
+             		<td><c:out value="${users.age}"/></td>
+             		<td><c:out value="${users.telephoneNumber}"/></td>   
+             		<td><c:out value="${users.dateOfRegistration}"/></td>   
+             		<td><c:out value="${users.adress}"></c:out></td>
+             </tr>
+            </c:forEach>
         </table>
     </div>
     
