@@ -9,6 +9,7 @@ import edu.ita.softserve.entity.User;
 
 public interface UserDao extends GenericDao<User, Long> {
 	
+	User getUserByAllName(String firstName, String secondName);
 	List<User> getAllDeptors();
 	List<Book> showBooksByUser(User user);
 	long timeOfLibraryUsing(User user);

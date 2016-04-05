@@ -73,4 +73,8 @@ public class UserService {
 		start.setMonth(end.getMonth()-1);
 		return userDao.countOfApplicationByTime(start, end, user);
 	}
+	
+	public User getUserByAllName(String firstName, String secondName) {
+		return userDao.getUserByAllName(firstName,secondName);
+	}
 }

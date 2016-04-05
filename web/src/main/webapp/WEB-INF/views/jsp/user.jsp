@@ -11,24 +11,23 @@
     <body>
  
     <div class="heder">
-        <img src="img/logo.jpg" alt="logo" class="logo-img" >
+       <a href="home"><img src="resources/img/logo.jpg" alt="logo" class="logo-img"></a>
         <input type="text" class="input-in-heder">
-        <a href = "first.html"><img src="img//search button.jpg" alt="search.jpg"  class="button"></a></div>
+        <a href = "#"><img src="img//search button.jpg" alt="search.jpg"  class="button"></a></div>
     </div>
         <nav>
-            <ul>
-                <li><a href="#">Пошук</a></li>
-                <li><a href="#">Читачі</a></li>
-                <li><a href="#">Боржники</a></li>
-                <li><a href="#">Статистика</a>
-                    <ul>
-                        <li><a href="#">Книги</a></li>
-                        <li><a href="#">Користувачі</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Log out</a></li>
-            </ul>
-        </nav>
+		<ul>
+			<li><a href="#">Catalog</a></li>
+			<li><a href="user">Readers�</a></li>
+			<li><a href="deptors">Deptors</a></li>
+			<li><a href="#">Statistics</a>
+				<ul>
+					<li><a href="#">Books</a></li>
+					<li><a href="user-statistic">Reader</a></li>
+				</ul></li>
+			<li><a href="#">Log out</a></li>
+		</ul>
+	</nav>
     
     <div>
         <table border="2">

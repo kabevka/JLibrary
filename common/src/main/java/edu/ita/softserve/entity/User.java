@@ -30,7 +30,10 @@ import javax.persistence.Table;
 			query = "select avg(u.age) from User u"),
 	@NamedQuery(name = "showCountOfApplicatioByTime",
 			query = "select count(u.instance) from User u where u.dateOfGiven >= :start and"
-					+ " u.dateOfGiven <= :end and u.id = :id ")
+					+ " u.dateOfGiven <= :end and u.id = :id "),
+	@NamedQuery(name = "showUserByAllName",
+			query = "Select u from User u where u.firstName = :fName and u.secondName = :sName"),
+		
 })
 @Table(name = "user")
 public class User implements Serializable {
@@ -74,6 +77,11 @@ public class User implements Serializable {
 	
 	public User() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public User(String firstName, String secondName){
+		this.firstName = firstName;
+		this.secondName = secondName;
 	}
 	
 	public User(String firstName, String secondName, int age, int telephoneNumber, Date dateOfRegistration,
