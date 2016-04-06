@@ -51,12 +51,13 @@
     <div class = "showStatisticByPeriod">
        <p>ƒShow the number of hits the user over time</p>
         <p>Enter user data:</p>
-        <form>
-            <p>Enter user name <input name = "FirstNameUser"></p>
-            <p>Enter surname <input name = "SecondNameUser"></p>  
+        <form:form method="post" action="date" modelAttribute="period">
+            <p>Enter user name <input name = "firstName"></p>
+            <p>Enter surname <input name = "secondName"></p>  
             <p>Start date <input name = "startDate" type="date"></p>
             <p>End date <input name = "endDate" type="date"> <input type = submit value = "Submit"></p>
-        </form> 
+        </form:form> 
+        <p>Count : ${count}</p>
     </div>
     
     </body>

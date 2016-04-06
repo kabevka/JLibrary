@@ -23,6 +23,7 @@
 		<property name="dataSource">
 			<ref bean="dataSource" />
 		</property>
+		<property name="persistenceXmlLocation" value="classpath:/META-INF/persistence.xml"></property>
 		<property name="persistenceUnitName" value="persistenceUnit" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">

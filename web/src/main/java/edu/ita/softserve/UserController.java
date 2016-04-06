@@ -1,5 +1,6 @@
 package edu.ita.softserve;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -28,6 +29,16 @@ public class UserController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		return "home";
+	}
+	@RequestMapping(value = "/add-user", method = RequestMethod.GET)
+	public String addUser(Locale locale, Model model){
+		return "add-user";
+	}
+	
+	@RequestMapping(value = "/addUser",method = RequestMethod.POST)
+	public String addUser(@ModelAttribute("user")User user, BindingResult result){
+		userService.add(user);
+		return "user";
 	}
 
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
@@ -63,9 +74,28 @@ public class UserController {
 	
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
 	public String addUserName(@RequestParam(value = "firstName")String fisrtName,@RequestParam(value = "secondName")String secondName, Model model){
-		User user = userService.getUserByAllName(fisrtName, secondName);
-		long time = userService.timeOfLibraryUsing(user);
+		long time = 0;
+		try{User user = userService.getUserByAllName(fisrtName, secondName);
+		time = userService.timeOfLibraryUsing(user);
+		}catch(IndexOutOfBoundsException exception){
+			model.addAttribute("timeOfUsing",0);
+		}
 		model.addAttribute("timeOfUsing",time);
 		return "user-statistic";
 	}
+
+	@RequestMapping(value = "/date", method = RequestMethod.POST)
+	public String showUsingByPeriod(@RequestParam(value = "firstName")String firstName, @RequestParam(value = "secondName")String secondName,
+			@RequestParam(value = "startDate")Date dateStart, @RequestParam(value = "endDate")Date dateEnd, Model model){
+		long count = 0;
+		try{User user = userService.getUserByAllName(firstName, secondName);
+		count = userService.countOfApplicationByTime(dateStart, dateEnd, user);
+		}catch(IndexOutOfBoundsException exception){
+			model.addAttribute("count",0);
+		}
+		model.addAttribute("count",count);
+		return "user-statistic";
+	}
+	
 }
+
