@@ -2,7 +2,6 @@ package edu.ita.softserve.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
@@ -82,6 +80,18 @@ public class User implements Serializable {
 	public User(String firstName, String secondName){
 		this.firstName = firstName;
 		this.secondName = secondName;
+	}
+	
+	public User(String firstName, String secondName,int age, long telephoneNumber,Adress adress){
+		this.firstName = firstName;
+		this.secondName = secondName;
+		this.age = age;
+		this.telephoneNumber = telephoneNumber;
+		dateOfRegistration = new Date(2016);
+		dateOfGiven = new Date(2015);
+		dateOfGivenBack = new Date(2016);
+		instance = new Instance();
+		this.adress = adress;
 	}
 	
 	public User(String firstName, String secondName, int age, int telephoneNumber, Date dateOfRegistration,

@@ -14,47 +14,45 @@ import edu.ita.softserve.dao.GenericDao;
 import edu.ita.softserve.dao.JPAUtil;
 
 @Repository
-public abstract class JpaGenericDao<T,V> implements GenericDao<T, V> {
-	
+public abstract class JpaGenericDao<T, V> implements GenericDao<T, V> {
+
 	private Class<T> entityType;
-	 
-	@PersistenceContext//(unitName = "persistenceUnit")
-	protected EntityManager entityManager ; 
-	
+
+	@PersistenceContext
+	protected EntityManager entityManager;
+
 	@SuppressWarnings("unchecked")
 	public JpaGenericDao() {
-		ParameterizedType genericSuperClass = (ParameterizedType) getClass()
-                .getGenericSuperclass();
-        this.entityType = (Class<T>) genericSuperClass.getActualTypeArguments()[0];         
+		ParameterizedType genericSuperClass = (ParameterizedType) getClass().getGenericSuperclass();
+		this.entityType = (Class<T>) genericSuperClass.getActualTypeArguments()[0];
 	}
-	
+
 	public void add(T t) {
-		entityManager.persist(t);		
+		entityManager.merge(t);
 	}
-	
+
 	public void delete(T t) {
-		entityManager.remove(t);		
+		entityManager.remove(t);
 	}
-	
+
 	public T findById(V id) {
 		return entityManager.find(entityType, id);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<T> getAll() {
-		Query query = entityManager.createQuery(
-                "SELECT entity FROM " + entityType.getName() + " entity");
-        return query.getResultList();
+		Query query = entityManager.createQuery("SELECT entity FROM " + entityType.getName() + " entity");
+		return query.getResultList();
 	}
-	
+
 	public void update(T t) {
 		entityManager.merge(t);
 	}
-	
+
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
-	
+
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}

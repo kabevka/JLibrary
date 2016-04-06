@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.ita.softserve.dao.impl.PublicationDao;
-import edu.ita.softserve.entity.Adress;
 import edu.ita.softserve.entity.Publication;
 
 @Service

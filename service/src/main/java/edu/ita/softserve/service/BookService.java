@@ -12,7 +12,6 @@ import edu.ita.softserve.entity.Book;
 
 
 @Service
-
 public class BookService {
 	
 	@Autowired

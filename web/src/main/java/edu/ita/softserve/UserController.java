@@ -3,10 +3,7 @@ package edu.ita.softserve;
 import java.sql.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,25 +13,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.ita.softserve.entity.Adress;
 import edu.ita.softserve.entity.User;
 import edu.ita.softserve.service.UserService;
 
 @Controller
 public class UserController {
-	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
 	UserService userService;
 
-	@RequestMapping(value = "/add-user", method = RequestMethod.GET)
-	public String addUser(Locale locale, Model model) {
+	@RequestMapping(value = "/adser", method = RequestMethod.GET)
+	public String addUser(Model model) {
+		User user = new User("Volodymyr", "Krokhmalyuk", 1, 638607115, new Adress("Lviv","Lychaki","1",1));
+		userService.add(user);
+		model.addAttribute("user", new User());
 		return "add-user";
 	}
 
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	public String addUser(@ModelAttribute("user") User user, BindingResult result) {
 		userService.add(user);
-		return "user";
+		return "add-user";
 	}
 
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
@@ -52,7 +52,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/user-statistic", method = RequestMethod.GET)
-	public String userStatistics(Locale locale, Model model) {
+	public String userStatistics() {
 		return "user-statistic";
 	}
 

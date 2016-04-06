@@ -30,7 +30,7 @@
 	</nav>
     
     <div>
-      <a href = "add-user">Add new User</a>
+      <a href = "adser">Add new User</a>
         <table border="2">
             <tr><th>id</th><th>First Nameè</th><th>Second Name</th><th>Age</th><th>Telephone number</th><th>Date of registrationó</th><th>Adress</th></tr>
             <tr>

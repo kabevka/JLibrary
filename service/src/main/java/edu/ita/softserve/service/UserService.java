@@ -43,7 +43,7 @@ public class UserService {
 	}
 	@Transactional
 	public void add(User user) {
-		new JpaUserDao().add(user);
+		userDao.add(user);
 	}
 
 	public User findById(long id) {
