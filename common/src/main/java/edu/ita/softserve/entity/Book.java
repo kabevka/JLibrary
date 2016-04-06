@@ -30,37 +30,43 @@ public class Book implements Serializable{
     @Column(name="id")
     private Long id;
     
-    @Column(name="name", nullable=false)
+    @Column(name="name", nullable=true)
     private String name;
     
     @Column(name="description", nullable=true)
     private String description;
     
-    @ManyToMany(fetch = FetchType.LAZY, targetEntity=Author.class)
-    private List<Author> authors;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "author_id", nullable = true)
+    private Author author;
     
     
     
-    @Column(name="amount_of_page", nullable=false)
+    @Column(name="amount_of_page", nullable=true)
+
     private int amountOfPage;
     
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
-    @JoinColumn(name = "publication_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "publication_id", nullable = true)
     private Publication publication;
     
-    
-    @OneToMany(fetch = FetchType.LAZY, targetEntity=Instance.class)
-    private List<Instance> instances;
-    
-    
-    @Column(name="year", nullable=false)
+      
+    @Column(name="year", nullable=true)
     private Integer year;
     
     public Long getId() {
         return id;
     }
+    
+    public Author getAuthor() {
+		return author;
+	}
 
-    public void setId(Long id) {
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
+
+	public void setId(Long id) {
         this.id = id;
     }
 
@@ -96,15 +102,7 @@ public class Book implements Serializable{
         this.description = description;
     }
 
-    public List<Author> getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(List<Author> authors) {
-        this.authors = authors;
-        
-    }
-
+    
     public Publication getPublication() {
         return publication;
     }
@@ -113,22 +111,10 @@ public class Book implements Serializable{
         this.publication = publication;
     }
     
-    
-
-    public List<Instance> getInstances() {
-		return instances;
-	}
-
-	public void setInstances(List<Instance> instances) {
-		this.instances = instances;
-	}
-
-	@Override
+   	@Override
     public String toString() {
 	return "Book [id=" + id + ", name=" + name + ", description="
 		+ description + " year="
 		+ year + "]";
     }
-    
-
 }

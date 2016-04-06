@@ -4,11 +4,13 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.springframework.stereotype.Repository;
+
 import edu.ita.softserve.dao.JPAUtil;
 import edu.ita.softserve.dao.impl.AuthorDao;
 import edu.ita.softserve.entity.Author;
 import edu.ita.softserve.entity.Book;
-
+@Repository
 public class JpaAuthorDao extends JpaGenericDao<Author, Long> implements AuthorDao{
 
    

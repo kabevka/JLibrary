@@ -1,0 +1,7 @@
+table {margin: auto;
+       background: #efefef;}
+       
+.div1 {width : 50%;
+	   float: left;}
+.div2 {width : 50%;
+	   margin-left: 70%;}
