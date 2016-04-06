@@ -2,17 +2,14 @@ package edu.ita.softserve.service;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.ita.softserve.dao.JPAUtil;
-import edu.ita.softserve.dao.factory.DaoFactory;
 import edu.ita.softserve.dao.impl.BookDao;
 import edu.ita.softserve.entity.Book;
-import edu.ita.softserve.entity.Instance;
+
 
 @Service
 

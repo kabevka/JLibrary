@@ -3,14 +3,12 @@ package edu.ita.softserve.service;
 import java.util.List;
 
 
-
-import edu.ita.softserve.dao.factory.DaoFactory;
 import edu.ita.softserve.entity.Author;
 import edu.ita.softserve.entity.Book;
 import edu.ita.softserve.entity.Instance;
 
 public class BookService2 {
-    
+    /**
     public Book findbyName(String name){
     	return DaoFactory.getInstance().getBookDao().findbyName(name);
 	
@@ -59,4 +57,5 @@ public class BookService2 {
   	public List<Book> findbyYear(Integer year1, Integer year2) {
   		return DaoFactory.getInstance().getBookDao().findbyYear(year1, year2);
   	}
+  	*/
 }

@@ -11,7 +11,6 @@ public interface UserDao extends GenericDao<User, Long> {
 	
 	User getUserByAllName(String firstName, String secondName);
 	List<User> getAllDeptors();
-	List<Book> showBooksByUser(User user);
 	long timeOfLibraryUsing(User user);
 	double getAvarageAgeUserByBookName(String bookName);
 	long countOfApplicationByTime(Date start, Date end,User user);

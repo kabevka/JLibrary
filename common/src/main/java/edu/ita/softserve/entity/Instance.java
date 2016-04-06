@@ -2,6 +2,7 @@ package edu.ita.softserve.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -32,7 +33,7 @@ public class Instance implements Serializable{
     @Column(name="is_available", nullable=false)
     private boolean isAvailable;
     
-    @ManyToOne(targetEntity=Book.class, fetch=FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity=Book.class, fetch=FetchType.LAZY)
     private Book book;
 
     public int getId() {
@@ -64,4 +65,3 @@ public class Instance implements Serializable{
 	return "Instance [id=" + id + ", book=" + book + "]";	
     }  
 }
-

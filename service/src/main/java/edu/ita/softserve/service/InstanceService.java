@@ -2,43 +2,53 @@ package edu.ita.softserve.service;
 
 import java.util.List;
 
-import edu.ita.softserve.dao.factory.DaoFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import edu.ita.softserve.dao.impl.InstanceDao;
 import edu.ita.softserve.entity.Book;
 import edu.ita.softserve.entity.Instance;
 
+@Service
 public class InstanceService {
-    
-    public void delete(Instance instance) {
-	DaoFactory.getInstance().getInstanceDao().delete(instance);
-	List<Instance> listOfIns = DaoFactory.getInstance().getInstanceDao().findAllInstanceByBook(instance.getBook());
-	if(listOfIns.size() == 0){
-	    DaoFactory.getInstance().getBookDao().delete(instance.getBook());
+
+	@Autowired
+	InstanceDao instanceDao;
+
+	@Autowired
+	BookService bookService;
+
+	@Transactional
+	public void delete(Instance instance) {
+		instanceDao.delete(instance);
+
 	}
-    }
-    
-    public void add(Instance instance){
-	 DaoFactory.getInstance().getInstanceDao().add(instance);
-    }
-    
-    public Instance findById(long id){
-	if(id < 0){
-	    return null;
+
+	@Transactional
+	public void add(Instance instance) {
+		instanceDao.add(instance);
 	}
-	Instance instance = DaoFactory.getInstance().getInstanceDao().findById(id);
-	return instance;
-    }
-    
-     public List<Instance> getAll(){
-	List<Instance> listOfBooks =  DaoFactory.getInstance().getInstanceDao().getAll();
-	return listOfBooks;
-     }
-     
-     public List<Instance> findByName(String name){
-	 List<Instance> listOfInstance = null;
-	 Book book = new BookService().findbyName(name);
-	 if(book != null){
-	     listOfInstance = DaoFactory.getInstance().getInstanceDao().findAllInstanceByBook(book);
-	 }
-	 return listOfInstance;
-     }
+
+	@Transactional
+	public Instance findById(long id) {
+		Instance instance = instanceDao.findById(id);
+		return instance;
+	}
+
+	@Transactional
+	public List<Instance> getAll() {
+		List<Instance> listOfBooks = instanceDao.getAll();
+		return listOfBooks;
+	}
+
+	@Transactional
+	public List<Instance> findByName(String name) {
+		List<Instance> listOfInstance = null;
+		Book book = bookService.findbyName(name);
+		if (book != null) {
+			listOfInstance = instanceDao.findAllInstanceByBook(book);
+		}
+		return listOfInstance;
+	}
 }

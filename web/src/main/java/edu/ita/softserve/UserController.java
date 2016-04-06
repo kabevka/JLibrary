@@ -26,17 +26,13 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		return "home";
-	}
 	@RequestMapping(value = "/add-user", method = RequestMethod.GET)
-	public String addUser(Locale locale, Model model){
+	public String addUser(Locale locale, Model model) {
 		return "add-user";
 	}
-	
-	@RequestMapping(value = "/addUser",method = RequestMethod.POST)
-	public String addUser(@ModelAttribute("user")User user, BindingResult result){
+
+	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
+	public String addUser(@ModelAttribute("user") User user, BindingResult result) {
 		userService.add(user);
 		return "user";
 	}
@@ -61,7 +57,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/bookTitle", method = RequestMethod.POST)
-	public String avarageAgeByBookusing(@RequestParam(value = "bookName") String bookName, Model model) {
+	public String avarageAgeByBookUsing(@RequestParam(value = "bookName") String bookName, Model model) {
 		double age = 0;
 		try {
 			age = userService.getAvarageAgeByBookName(bookName);
@@ -71,31 +67,33 @@ public class UserController {
 		model.addAttribute("age", age);
 		return "user-statistic";
 	}
-	
+
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
-	public String addUserName(@RequestParam(value = "firstName")String fisrtName,@RequestParam(value = "secondName")String secondName, Model model){
+	public String addUserName(@RequestParam(value = "firstName") String fisrtName,
+			@RequestParam(value = "secondName") String secondName, Model model) {
 		long time = 0;
-		try{User user = userService.getUserByAllName(fisrtName, secondName);
-		time = userService.timeOfLibraryUsing(user);
-		}catch(IndexOutOfBoundsException exception){
-			model.addAttribute("timeOfUsing",0);
+		try {
+			User user = userService.getUserByAllName(fisrtName, secondName);
+			time = userService.timeOfLibraryUsing(user);
+		} catch (IndexOutOfBoundsException exception) {
+			model.addAttribute("timeOfUsing", 0);
 		}
-		model.addAttribute("timeOfUsing",time);
+		model.addAttribute("timeOfUsing", time);
 		return "user-statistic";
 	}
 
 	@RequestMapping(value = "/date", method = RequestMethod.POST)
-	public String showUsingByPeriod(@RequestParam(value = "firstName")String firstName, @RequestParam(value = "secondName")String secondName,
-			@RequestParam(value = "startDate")Date dateStart, @RequestParam(value = "endDate")Date dateEnd, Model model){
+	public String showUsingByPeriod(@RequestParam(value = "firstName") String firstName,
+			@RequestParam(value = "secondName") String secondName, @RequestParam(value = "startDate") Date dateStart,
+			@RequestParam(value = "endDate") Date dateEnd, Model model) {
 		long count = 0;
-		try{User user = userService.getUserByAllName(firstName, secondName);
-		count = userService.countOfApplicationByTime(dateStart, dateEnd, user);
-		}catch(IndexOutOfBoundsException exception){
-			model.addAttribute("count",0);
+		try {
+			User user = userService.getUserByAllName(firstName, secondName);
+			count = userService.countOfApplicationByTime(dateStart, dateEnd, user);
+		} catch (IndexOutOfBoundsException exception) {
+			model.addAttribute("count", 0);
 		}
-		model.addAttribute("count",count);
+		model.addAttribute("count", count);
 		return "user-statistic";
 	}
-	
 }
-

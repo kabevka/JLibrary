@@ -2,30 +2,35 @@ package edu.ita.softserve.service;
 
 import java.util.List;
 
-import edu.ita.softserve.dao.factory.DaoFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import edu.ita.softserve.dao.impl.AuthorDao;
 import edu.ita.softserve.entity.Author;
 
+@Service
 public class AuthorService {
-	public void update(final Author currentAuthor, final Author updatedAuthor){
-		DaoFactory.getInstance().getAuthorDao().update(updatedAuthor);
+	@Autowired
+	AuthorDao authorDao;
+
+	public void update(final Author currentAuthor, final Author updatedAuthor) {
+		authorDao.update(updatedAuthor);
 	}
-	
-	public void add(Author author){
-		DaoFactory.getInstance().getAuthorDao().add(author);
+
+	public void add(Author author) {
+		authorDao.add(author);
 	}
-	
-	public void delete(Author author){
-		DaoFactory.getInstance().getAuthorDao().delete(author);
+
+	public void delete(Author author) {
+		authorDao.delete(author);
 	}
-	
-	public List<Author> getAll(){
-		return DaoFactory.getInstance().getAuthorDao().getAll();
+
+	public List<Author> getAll() {
+		return authorDao.getAll();
 	}
-	
-	public Author getById(long id){
-		return DaoFactory.getInstance().getAuthorDao().findById(id);
+
+	public Author getById(long id) {
+		return authorDao.findById(id);
 	}
-	
-	
 
 }
