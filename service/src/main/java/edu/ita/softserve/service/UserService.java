@@ -67,10 +67,6 @@ public class UserService {
 	}
 	
 	public long countOfApplicationByTime(Date start, Date end, User user) {
-		start.setYear(start.getYear()-1900);
-		start.setMonth(start.getMonth()-1);
-		start.setYear(end.getYear()-1900);
-		start.setMonth(end.getMonth()-1);
 		return userDao.countOfApplicationByTime(start, end, user);
 	}
 	

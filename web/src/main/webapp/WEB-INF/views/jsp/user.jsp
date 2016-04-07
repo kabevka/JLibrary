@@ -31,6 +31,7 @@
     
     <div>
       <a href = "adser">Add new User</a>
+      <a href = "give_book">Add Book for User</a>
         <table border="2">
             <tr><th>id</th><th>First Nameè</th><th>Second Name</th><th>Age</th><th>Telephone number</th><th>Date of registrationó</th><th>Adress</th></tr>
             <tr>
