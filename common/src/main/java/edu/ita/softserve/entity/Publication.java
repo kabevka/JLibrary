@@ -27,23 +27,7 @@ public class Publication implements Serializable{
     	
 	@Column (name = "name", length = 45, unique = true)
 	private String name;
-	
-	
-	@OneToMany(fetch = FetchType.LAZY, targetEntity=Book.class)
-	private List<Book> books;
-	
-	public void addBook(Book book) {
-		if (!books.contains(book)) {
-			books.add(book);
-		}
-	}
-	
-    public List<Book> getBooks() {
-        return books;
-
-    }
-
- 
+		
 	public Publication() {
 	}
 
@@ -63,9 +47,34 @@ public class Publication implements Serializable{
 		this.name = name;
 	}
 
-	public void setBooks(List<Book> books) {
-		this.books = books;
-	}	
-	
+	@Override
+	public String toString() {
+		return "Publication [id=" + id + ", name=" + name + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Publication other = (Publication) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
 	
 }

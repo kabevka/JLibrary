@@ -29,14 +29,11 @@ public class Author implements Serializable{
 	@Column(name = "id")
 	private Long id;
 	
-	@Column (name = "name", length = 45,unique = true)
+	@Column (name = "name", length = 45)
 	private String name;
 	
 	@Column (name = "surname", length = 45)
 	private String surname;
-	
-	@ManyToMany	(fetch = FetchType.LAZY, targetEntity=Book.class)
-	private List<Book> bookList;
 	
 	public Author() {}
 	
@@ -65,14 +62,10 @@ public class Author implements Serializable{
 		this.surname = surname;
 	}
 
-	public List<Book> getBookList() {
-		return bookList;
+
+	@Override
+	public String toString() {
+		return "Author [id=" + id + ", name=" + name + ", surname=" + surname + "]";
 	}
 
-	public void setBookList(List<Book> bookList) {
-		this.bookList = bookList;
-	}
-
-
-	
 }

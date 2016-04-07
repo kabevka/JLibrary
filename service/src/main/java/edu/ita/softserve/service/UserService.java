@@ -43,7 +43,7 @@ public class UserService {
 	}
 	@Transactional
 	public void add(User user) {
-		new JpaUserDao().add(user);
+		userDao.add(user);
 	}
 
 	public User findById(long id) {
@@ -72,5 +72,9 @@ public class UserService {
 		start.setYear(end.getYear()-1900);
 		start.setMonth(end.getMonth()-1);
 		return userDao.countOfApplicationByTime(start, end, user);
+	}
+	
+	public User getUserByAllName(String firstName, String secondName) {
+		return userDao.getUserByAllName(firstName,secondName);
 	}
 }

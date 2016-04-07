@@ -3,18 +3,24 @@ package edu.ita.softserve.dao.impl.jpa;
 import java.sql.Date;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
 import edu.ita.softserve.dao.impl.UserDao;
-import edu.ita.softserve.entity.Book;
 import edu.ita.softserve.entity.User;
 
 @Repository
 public class JpaUserDao extends JpaGenericDao<User, Long> implements UserDao {
+	
+	@Override
+	public User getUserByAllName(String firstName, String secondName ) {
+		Query query = getEntityManager().createNamedQuery("showUserByAllName");
+		query.setParameter("fName", firstName);
+		query.setParameter("sName", secondName);
+		User user = (User) query.getResultList().get(0);
+		return user;
+	}
 	
 	@SuppressWarnings("unchecked")
 	public List<User> getAllDeptors() {
@@ -39,11 +45,6 @@ public class JpaUserDao extends JpaGenericDao<User, Long> implements UserDao {
 		query.setParameter("bookName", bookName);
 		double avagareAge = (Double) query.getResultList().get(0);
 		return avagareAge;
-	}
-
-	public List<Book> showBooksByUser(User user) {
-
-		return null;
 	}
 
 	public long countOfApplicationByTime(Date start, Date end, User user) {

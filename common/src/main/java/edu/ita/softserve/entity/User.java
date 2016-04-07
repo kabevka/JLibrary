@@ -2,7 +2,6 @@ package edu.ita.softserve.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
@@ -30,7 +28,10 @@ import javax.persistence.Table;
 			query = "select avg(u.age) from User u"),
 	@NamedQuery(name = "showCountOfApplicatioByTime",
 			query = "select count(u.instance) from User u where u.dateOfGiven >= :start and"
-					+ " u.dateOfGiven <= :end and u.id = :id ")
+					+ " u.dateOfGiven <= :end and u.id = :id "),
+	@NamedQuery(name = "showUserByAllName",
+			query = "Select u from User u where u.firstName = :fName and u.secondName = :sName"),
+		
 })
 @Table(name = "user")
 public class User implements Serializable {
@@ -74,6 +75,23 @@ public class User implements Serializable {
 	
 	public User() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public User(String firstName, String secondName){
+		this.firstName = firstName;
+		this.secondName = secondName;
+	}
+	
+	public User(String firstName, String secondName,int age, long telephoneNumber,Adress adress){
+		this.firstName = firstName;
+		this.secondName = secondName;
+		this.age = age;
+		this.telephoneNumber = telephoneNumber;
+		dateOfRegistration = new Date(2016);
+		dateOfGiven = new Date(2015);
+		dateOfGivenBack = new Date(2016);
+		instance = new Instance();
+		this.adress = adress;
 	}
 	
 	public User(String firstName, String secondName, int age, int telephoneNumber, Date dateOfRegistration,
@@ -172,6 +190,5 @@ public class User implements Serializable {
 				+ ", telephoneNumber=" + telephoneNumber + ", dateOfRegistration=" + dateOfRegistration + ", instance="
 				+ instance + ", dateOfGiven=" + dateOfGiven + ", dateOfGivenBack=" + dateOfGivenBack + ", adress="
 				+ adress + "]";
-	}	
-	
+	}		
 }
