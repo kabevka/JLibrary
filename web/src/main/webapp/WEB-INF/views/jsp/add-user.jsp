@@ -7,6 +7,8 @@
 <meta charset="utf-8">
 <title>Admin</title>
 <link rel="stylesheet" href="resources/css/admin.css" />
+<link rel="stylesheet" href="resources/css/user.css" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 <body>
 
@@ -15,7 +17,7 @@
 			class="logo-img"></a> <input type="text" class="input-in-heder">
 		<a href="#"><img src="resources/img/search button.jpg" alt="search.jpg"
 			class="button"></a>
-	</div>
+	</div> 
 	</div>
 	<nav>
 	<ul>
@@ -31,17 +33,21 @@
 	</ul>
 	</nav>
 <body>
-	<div>
-		<form:form method="post" action="addUser" modelAttribute="user">
-			<p>First Name</p><form:input path="firstName"/>
-			<p>Second name</p><form:input path="secondName"/>
-			<p>Age</p><form:input path="age"/>
-			<p>telephoneNumber</p><form:input path="telephoneNumber"/>
-			<p>City</p><form:input path="adress.city"/>
-			<p>Street</p><form:input path="adress.street"/>
-			<p>Number of house</p><form:input path="adress.numberOfHouse"/>
-			<p>Flat</p><form:input path="adress.numberOfFlat"/>
-			<input type="submit" value="Add">
+	<div class = "addUser">
+		<form:form method="post" action="addUser" modelAttribute="user" class = "marginForm">
+		  <div class = "form-group"></div>
+			<p>First Name</p><form:input path="firstName" class="form-control" id="exampleInputName2" width = "20%"/>
+			<p>Second name</p><form:input path="secondName" class="form-control" id="exampleInputName2"/>
+			<p>Age</p><form:input path="age" class="form-control" id="exampleInputName2"/>
+			<p>telephoneNumber</p><form:input path="telephoneNumber" class="form-control" id="exampleInputName2"/>
+			<p>Date of Registration</p><form:input path="dateOfRegistration" type = "date" class="form-control" id="exampleInputName2" />
+			<p>City</p><form:input path="adress.city" class="form-control" id="exampleInputName2"/>
+			<p>Street</p><form:input path="adress.street" class="form-control" id="exampleInputName2"/>
+			<p>Number of house</p><form:input path="adress.numberOfHouse" class="form-control" id="exampleInputName2"/>
+			<p>Flat</p><form:input path="adress.numberOfFlat" class="form-control" id="exampleInputName2"/>
+			<input type="submit" value="Add" class="btn btn-default" />
+		  </div>
+		  
 		</form:form>
 	</div>
 </body>
