@@ -44,6 +44,7 @@
 				<th>Age</th>
 				<th>Telephone number</th>
 				<th>Date of registration—</th>
+				<td>Book</td>
 				<th>Adress</th>
 			</tr>
 			<tr>
@@ -54,6 +55,7 @@
 					<td><c:out value="${users.age}" /></td>
 					<td><c:out value="${users.telephoneNumber}" /></td>
 					<td><c:out value="${users.dateOfRegistration}" /></td>
+					<td><c:out value="${user.instance}"/></td>
 					<td><c:out value="${users.adress}"></c:out></td>
 			</tr>
 			</c:forEach>

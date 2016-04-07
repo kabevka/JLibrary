@@ -21,7 +21,7 @@ import javax.persistence.Table;
 			query = "select avg(u.age) from User u inner join u.instance.book as b  where u.instance.id = "
 					+ "b.id and  b.name = :bookName"),					 
 	@NamedQuery(name = "showAllDeptors",
-			query = "select u from User u where u.dateOfGivenBack > current_date"),
+			query = "select u from User u where u.dateOfGivenBack < current_date"),
 	@NamedQuery(name = "showRegistrationTime",
 			query = "select u.dateOfRegistration from User u where u.id = :uId"),
 	@NamedQuery(name = "showUseravarageAge",
@@ -87,10 +87,7 @@ public class User implements Serializable {
 		this.secondName = secondName;
 		this.age = age;
 		this.telephoneNumber = telephoneNumber;
-		dateOfRegistration = new Date(2016);
-		dateOfGiven = new Date(2015);
-		dateOfGivenBack = new Date(2016);
-		instance = new Instance();
+		dateOfRegistration = new Date(new java.util.Date().getTime());
 		this.adress = adress;
 	}
 	

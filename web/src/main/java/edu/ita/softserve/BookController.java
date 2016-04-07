@@ -19,45 +19,56 @@ import edu.ita.softserve.service.InstanceService;
 
 @Controller
 public class BookController {
-	
+
 	@Autowired
 	BookService bookService;
-	
+
 	@RequestMapping(value = "/addBook", method = RequestMethod.POST)
-	 public String addBook(@ModelAttribute("bookDTO") RequestDto requestDTO){
+	public String addBook(@ModelAttribute("bookDTO") RequestDto requestDTO) {
 
 		Book book = new Book();
 		book.setAmountOfPage(requestDTO.getAmountOfPage());
 		book.setName(requestDTO.getName());
 		book.setDescription(requestDTO.getDescription());
 		book.setYear(requestDTO.getYear());
-		
+
 		Author author = new Author();
 		author.setName(requestDTO.getAuthorName());
 		author.setSurname(requestDTO.getAuthorSurname());
-				
+
 		Publication publication = new Publication();
 		publication.setName(requestDTO.getPublicationName());
-		
+
 		book.setAuthor(author);
 		book.setPublication(publication);
-		
+
 		bookService.addBook(book);
-			return "addRemove";
+		return "addRemove";
 	}
-	
+
 	@RequestMapping(value = "/instance")
-	 public String local(){
-			return "instance";
+	public String local() {
+		return "instance";
 	}
-	
+
 	@RequestMapping(value = "/addRemove")
-	 public String redirect(){
-			return "addRemove";
+	public String redirect() {
+		return "addRemove";
 	}
-	
+
 	@RequestMapping(value = "/main")
-	 public String redirectInHome(){
-			return "home";
+	public String redirectInHome() {
+		return "home";
+	}
+
+	@RequestMapping(value = "/catalog")
+	public String redirectCatalog() {
+		return "catalog";
+	}
+
+	@RequestMapping(value = "/addBooks", method = RequestMethod.POST)
+	public String addBook(@ModelAttribute("book") Book book, BindingResult result) {
+		bookService.add(book);
+		return "home";
 	}
 }

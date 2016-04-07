@@ -33,7 +33,7 @@ public class Instance implements Serializable{
     @Column(name="is_available", nullable=false)
     private boolean isAvailable;
     
-    @ManyToOne(cascade = {CascadeType.ALL, CascadeType.REMOVE}, targetEntity=Book.class, fetch=FetchType.EAGER)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH}, targetEntity=Book.class, fetch=FetchType.EAGER,optional = true)
     private Book book;
 
     public Long getId() {

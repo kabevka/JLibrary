@@ -40,6 +40,7 @@
 			<p>Second name</p><form:input path="secondName" class="form-control" id="exampleInputName2"/>
 			<p>Age</p><form:input path="age" class="form-control" id="exampleInputName2"/>
 			<p>telephoneNumber</p><form:input path="telephoneNumber" class="form-control" id="exampleInputName2"/>
+			<p>Date of Registration</p><form:input path="dateOfRegistration" type = "date" class="form-control" id="exampleInputName2" />
 			<p>City</p><form:input path="adress.city" class="form-control" id="exampleInputName2"/>
 			<p>Street</p><form:input path="adress.street" class="form-control" id="exampleInputName2"/>
 			<p>Number of house</p><form:input path="adress.numberOfHouse" class="form-control" id="exampleInputName2"/>

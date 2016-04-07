@@ -34,26 +34,35 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
-	
 	/**
 	 * 
 	 * @param model
 	 * @return add-user page
 	 */
-	@RequestMapping(value = "/adser", method = RequestMethod.GET)
+	@RequestMapping(value = "/addNewUser", method = RequestMethod.GET)
 	public String addUser(final Model model) {
 		model.addAttribute("user", new User());
 		return "add-user";
 	}
-
+	/**
+	 * 
+	 * @param user 
+	 * 		User for add
+	 * @param result
+	 * @return
+	 */
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	public String addUser(@ModelAttribute("user")final User user, final BindingResult result) {
 		userService.add(user);
 		return "add-user";
 	}
-
+	/**
+	 * 
+	 * @param model
+	 * @return redirect on page user
+	 */
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
-	public String user(final Locale locale, final Model model) {
+	public String user(final Model model) {
 		List<User> users = userService.getAll();
 		model.addAttribute("users", users);
 		return "user";
@@ -63,69 +72,7 @@ public class UserController {
 	public String deptors(Locale locale, Model model) {
 		List<User> deptors = userService.getAllDeptors();
 		model.addAttribute("users", deptors);
-		return "user";
-	}
-
-	@RequestMapping(value = "/user-statistic", method = RequestMethod.GET)
-	public String userStatistics() {
-		return "user-statistic";
-	}
-
-	@RequestMapping(value = "/bookTitle", method = RequestMethod.POST)
-	public String avarageAgeByBookUsing(@RequestParam(value = "bookName")final String bookName, final Model model) {
-		double age = 0;
-		try {
-			age = userService.getAvarageAgeByBookName(bookName);
-		} catch (NullPointerException exception) {
-			model.addAttribute("age", "Book don't exist");
-		}
-		model.addAttribute("age", age);
-		return "user-statistic";
-	}
-
-	@RequestMapping(value = "/user", method = RequestMethod.POST)
-	public String addUserName(@RequestParam(value = "firstName") String fisrtName,
-			@RequestParam(value = "secondName")final String secondName,final Model model) {
-		long time = 0;
-		try {
-			User user = userService.getUserByAllName(fisrtName, secondName);
-			time = userService.timeOfLibraryUsing(user);
-		} catch (IndexOutOfBoundsException exception) {
-			model.addAttribute("timeOfUsing", 0);
-		}
-		model.addAttribute("timeOfUsing", time);
-		return "user-statistic";
-	}
-
-	/**
-	 * 
-	 * Controller for show time of user using library
-	 * 
-	 * @param firstName 
-	 * 			first user name
-	 * @param secondName 
-	 * 			second user name
-	 * @param dateStart 
-	 * 			start date for search
-	 * @param dateEnd 
-	 * 			end date for search
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "/date", method = RequestMethod.POST)
-	public String showUsingByPeriod(@RequestParam(value = "firstName")final String firstName,
-			@RequestParam(value = "secondName")final String secondName,
-			@RequestParam(value = "startDate")final Date dateStart,
-			@RequestParam(value = "endDate")final Date dateEnd,final Model model) {
-		long count = 0;
-		try {
-			User user = userService.getUserByAllName(firstName, secondName);
-			count = userService.countOfApplicationByTime(dateStart, dateEnd, user);
-		} catch (IndexOutOfBoundsException exception) {
-			model.addAttribute("count", 0);
-		}
-		model.addAttribute("count", count);
-		return "user-statistic";
+		return "deptors";
 	}
 	
 	@RequestMapping(value = "/give_book", method = RequestMethod.GET)
