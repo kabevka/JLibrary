@@ -28,27 +28,27 @@ public class Instance implements Serializable{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
-    private int id;
+    private Long id;
     
     @Column(name="is_available", nullable=false)
     private boolean isAvailable;
     
-    @ManyToOne(cascade = CascadeType.ALL, targetEntity=Book.class, fetch=FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.ALL, CascadeType.REMOVE}, targetEntity=Book.class, fetch=FetchType.EAGER)
     private Book book;
 
-    public int getId() {
-        return id;
-    }
+    public Long getId() {
+		return id;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public boolean isAvailable() {
+	public boolean getIsAvailable() {
         return isAvailable;
     }
 
-    public void setAvailable(boolean isAvailable) {
+    public void setIsAvailable(boolean isAvailable) {
         this.isAvailable = isAvailable;
     } 
 
@@ -60,8 +60,11 @@ public class Instance implements Serializable{
         this.book = book;
     }
 
-    @Override
-    public String toString() {
-	return "Instance [id=" + id + ", book=" + book + "]";	
-    }  
+	@Override
+	public String toString() {
+		return "Instance [id=" + id + ", isAvailable=" + isAvailable + ", book=" + book + "]";
+	}
+
+    
 }
+

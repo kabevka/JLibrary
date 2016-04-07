@@ -13,14 +13,14 @@
 	<nav>
 		<ul>
 			<li><a href="catalog">Catalog</a></li>
-			<li><a href="user">Readers–</a></li>
+			<li><a href="user">Readersï¿½</a></li>
 			<li><a href="deptors">Debtors</a></li>
 			<li><a href="#">Statistics</a>
 				<ul>
 					<li><a href="#">Books</a></li>
 					<li><a href="user-statistic">Reader</a></li>
 				</ul></li>
-			<li><a href="#">Log out</a></li>
+			<li><a href="addRemove">ADD/REM</a></li>
 		</ul>
 	</nav>
 
