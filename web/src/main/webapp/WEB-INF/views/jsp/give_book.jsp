@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,21 +32,20 @@
 	</ul>
 	</nav>
 <body>
-	<form:form method="POST" commandname="users" action="user">  
-<table>  
-    <tbody><tr>  
-    <td>  
-        <ul>  
-            <form:select path="user" items="${users}">  
-        </form:select></ul>  
-    </td>  
-    </tr>  
-    <tr>  
-        <td>  
-            <input type="submit" value="Submit">  
-        </td>  
-    </tr>  
-</tbody></table>    
-</form:form>  
+	
+	<form:form method="POST" action="giveBookForUser">
+		<p>User</p>
+		<select name="userValue">
+			<c:forEach items="${allUsers}" var="user">
+				<option value="${user.id}">${user.firstName}</option>
+			</c:forEach>
+		</select>
+		<p>Book</p>
+		<select name="bookValue">
+			<c:forEach items="${allBooks}" var="instance">
+				<option value="${instance.id}">${instance.book}</option>
+			</c:forEach>
+		<input type="submit" value="Add book">
+	</form:form>
 </body>
 </html>

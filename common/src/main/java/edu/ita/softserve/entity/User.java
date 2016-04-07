@@ -87,7 +87,7 @@ public class User implements Serializable {
 		this.secondName = secondName;
 		this.age = age;
 		this.telephoneNumber = telephoneNumber;
-		dateOfRegistration = Date;
+		dateOfRegistration = new Date(2016);
 		dateOfGiven = new Date(2015);
 		dateOfGivenBack = new Date(2016);
 		instance = new Instance();

@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -127,11 +128,16 @@ public class UserController {
 		return "user-statistic";
 	}
 	
-	@RequestMapping(value = "/give_book",method = RequestMethod.GET)
-	public String giveBookUser(Model model){
-		List<User>users = userService.getAll();
-		model.addAttribute("user", new User());
-		model.addAttribute("users", users);
-		return "give_book";
-	}
+	@RequestMapping(value = "/give_book", method = RequestMethod.GET)
+	 public String displayUserInfo(Map<String, Object> map) {
+	  map.put("allUsers", userService.getAll());
+	  map.put("allBooks", userService.getAll());
+	  return "give_book";
+	 }
+	
+	@RequestMapping(value = "/giveBookForUser", method = RequestMethod.POST)
+	 public String addBookForUser(@RequestParam(value = "userValue") String user ) {
+	  User user2 = userService.findById(Integer.parseInt(user));	  
+	  return "give_book";
+	 }
 }

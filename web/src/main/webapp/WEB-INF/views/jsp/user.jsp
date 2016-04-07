@@ -7,6 +7,7 @@
         <title>Admin</title>
         <link rel="stylesheet" href="resources/css/admin.css"/>
         <link rel="stylesheet" href="resorces/css/user.css"/>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     </head>
     <body>
  
@@ -29,10 +30,10 @@
 		</ul>
 	</nav>
     
-    <div>
+    <div class = "addUser">
       <a href = "adser">Add new User</a>
       <a href = "give_book">Add Book for User</a>
-        <table border="2">
+        <table border="2" class="table">
             <tr><th>id</th><th>First Nameè</th><th>Second Name</th><th>Age</th><th>Telephone number</th><th>Date of registrationó</th><th>Adress</th></tr>
             <tr>
             	<c:forEach items = "${users}" var="users">
