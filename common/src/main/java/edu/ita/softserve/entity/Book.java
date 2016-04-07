@@ -36,7 +36,7 @@ public class Book implements Serializable{
     @Column(name="description", nullable=true)
     private String description;
     
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id", nullable = true)
     private Author author;
     
@@ -44,9 +44,9 @@ public class Book implements Serializable{
     
     @Column(name="amount_of_page", nullable=true)
 
-    private int amountOfPage;
+    private Integer amountOfPage;
     
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "publication_id", nullable = true)
     private Publication publication;
     
@@ -78,23 +78,25 @@ public class Book implements Serializable{
         this.name = name;
     }
 
-    public int getAmountOfPage() {
-        return amountOfPage;
-    }
-
-    public void setAmountOfPage(int amountOfPage) {
-        this.amountOfPage = amountOfPage;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
     
-    public String getDescription() {
+    
+    public Integer getAmountOfPage() {
+		return amountOfPage;
+	}
+
+	public void setAmountOfPage(Integer amountOfPage) {
+		this.amountOfPage = amountOfPage;
+	}
+
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
+	public String getDescription() {
         return description;
     }
 
@@ -112,9 +114,34 @@ public class Book implements Serializable{
     }
     
    	@Override
-    public String toString() {
-	return "Book [id=" + id + ", name=" + name + ", description="
-		+ description + " year="
-		+ year + "]";
-    }
+	public String toString() {
+		return "Book [id=" + id + ", name=" + name + ", description=" + description + ", amountOfPage=" + amountOfPage
+				+ ", year=" + year + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + amountOfPage;
+		result = prime * result + ((author == null) ? 0 : author.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((publication == null) ? 0 : publication.hashCode());
+		result = prime * result + ((year == null) ? 0 : year.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Book other = (Book) obj;
+		return name.equals(other.getName()) && description.equals(other.getDescription()) &&
+			amountOfPage.equals(other.getAmountOfPage()) && year.equals(other.getYear());
+	}
 }

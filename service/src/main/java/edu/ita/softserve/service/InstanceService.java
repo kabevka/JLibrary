@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import edu.ita.softserve.dao.impl.InstanceDao;
 import edu.ita.softserve.entity.Book;
 import edu.ita.softserve.entity.Instance;
@@ -31,7 +30,7 @@ public class InstanceService {
 	}
 
 	@Transactional
-	public Instance findById(long id) {
+	public Instance findById(Long id) {
 		Instance instance = instanceDao.findById(id);
 		return instance;
 	}
@@ -50,5 +49,9 @@ public class InstanceService {
 			listOfInstance = instanceDao.findAllInstanceByBook(book);
 		}
 		return listOfInstance;
+	}
+	@Transactional
+	public void remove(Long id){
+		instanceDao.remove(id);
 	}
 }

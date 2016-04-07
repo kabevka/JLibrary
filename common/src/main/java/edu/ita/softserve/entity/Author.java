@@ -68,4 +68,26 @@ public class Author implements Serializable{
 		return "Author [id=" + id + ", name=" + name + ", surname=" + surname + "]";
 	}
 
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		Author other = (Author) obj;
+		return name.equals(other.getName()) && surname.equals(other.getSurname());
+	}
+
+
 }

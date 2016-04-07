@@ -7,14 +7,13 @@
 <meta charset="utf-8">
 <title>Admin</title>
 <link rel="stylesheet" href="resources/css/admin.css" />
-<link rel="stylesheet" href="resorces/css/user.css" />
 </head>
 <body>
 
 	<div class="heder">
 		<a href="home"><img src="resources/img/logo.jpg" alt="logo"
 			class="logo-img"></a> <input type="text" class="input-in-heder">
-		<a href="#"><img src="img//search button.jpg" alt="search.jpg"
+		<a href="#"><img src="resources/img/search button.jpg" alt="search.jpg"
 			class="button"></a>
 	</div>
 	</div>
